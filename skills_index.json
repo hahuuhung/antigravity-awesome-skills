@@ -918,6 +918,12 @@
     "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment"
   },
   {
+    "id": "moodle-external-api-development",
+    "path": "skills/moodle-external-api-development",
+    "name": "moodle-external-api-development",
+    "description": "Create custom external web service APIs for Moodle LMS. Use when implementing web services for course management, user tracking, quiz operations, or custom plugin functionality. Covers parameter validation, database operations, error handling, service registration, and Moodle coding standards."
+  },
+  {
     "id": "xlsx-official",
     "path": "skills/xlsx-official",
     "name": "xlsx",

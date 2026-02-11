@@ -1,0 +1,24 @@
+{
+    "terms": {
+        "Description": "M\u00f4 t\u1ea3",
+        "Usage": "C\u00e1ch s\u1eed d\u1ee5ng",
+        "Triggers": "K\u00edch ho\u1ea1t",
+        "Tools": "C\u00f4ng c\u1ee5",
+        "Techniques": "K\u1ef9 thu\u1eadt",
+        "Overview": "T\u1ed5ng quan",
+        "Implementation": "Tri\u1ec3n khai",
+        "clean code": "m\u00e3 s\u1ea1ch",
+        "refactor": "t\u00e1i c\u1ea5u tr\u00fac",
+        "bug": "l\u1ed7i",
+        "security": "b\u1ea3o m\u1eadt",
+        "performance": "hi\u1ec7u n\u0103ng",
+        "test": "ki\u1ec3m th\u1eed",
+        "deploy": "tri\u1ec3n khai",
+        "database": "c\u01a1 s\u1edf d\u1eef li\u1ec7u",
+        "frontend": "giao di\u1ec7n ng\u01b0\u1eddi d\u00f9ng",
+        "backend": "x\u1eed l\u00fd n\u1ec1n t\u1ea3ng",
+        "architecture": "ki\u1ebfn tr\u00fac",
+        "commit": "ghi l\u1ea1i",
+        "pull request": "y\u00eau c\u1ea7u h\u1ee3p nh\u1ea5t"
+    }
+}

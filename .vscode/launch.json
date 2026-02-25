@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Antigravity Skills VS Code Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/ide/vscode-extension"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/ide/vscode-extension/**/*.js"
+      ]
+    }
+  ]
+}
+

@@ -58,3 +58,83 @@ Hệ thống skills đã được thiết lập cơ bản và sẵn sàng sử d
 - [x] **C.** Hỗ trợ **Localization** (Dịch docs sang tiếng Việt hàng loạt).
 
 Dự án đã sẵn sàng cho giai đoạn phát triển tiếp theo (nếu có).
+
+## 4. Kế hoạch Tạo Extension cho các IDE
+
+### 4.1. Mục tiêu
+
+- Đưa kho **713 skills** vào ngay trong IDE (VS Code, Cursor, JetBrains...) để:
+    - Gợi ý skill theo **ngữ cảnh file/projet**.
+    - Cho phép gọi nhanh skill bằng alias (`@clean-code`, `@architecture`, ...).
+    - Hiển thị tài liệu ngắn gọn từ `SKILL.md` trực tiếp trong IDE.
+
+### 4.2. Phạm vi & Ưu tiên IDE
+
+- **Giai đoạn 1** (MVP):
+    - VS Code Extension.
+    - Cursor Integration (nếu dùng được thông qua cấu hình Agent/skills).
+- **Giai đoạn 2**:
+    - JetBrains Plugin (IntelliJ / WebStorm).
+    - Neovim (qua Lua plugin / LSP integration).
+
+### 4.3. Tận dụng cấu trúc từ `skills_guide.md`
+
+- Sử dụng các **nhóm skills** đã có:
+    - `architecture`, `business`, `data-ai`, `development`, `general`, `infrastructure`, `security`, `testing`, `workflow`.
+- Ánh xạ nhóm skills vào:
+    - **Tree view** trong IDE (Explorer/Side Bar).
+    - **Filter/tag** khi tìm kiếm skill.
+    - **Gợi ý theo ngữ cảnh**:
+        - File `.js/.ts/.tsx` -> ưu tiên nhóm `development`, `testing`.
+        - File `docker-compose`, `yaml`, `k8s` -> ưu tiên nhóm `infrastructure`.
+        - File `policy`, `security`, `auth` -> ưu tiên nhóm `security`.
+
+### 4.4. Thiết kế kiến trúc chung cho Extension
+
+- **Core Engine (Node.js / TypeScript)**:
+    - Đọc metadata skills từ `CATALOG.md` và/hoặc thư mục `skills/`.
+    - Cung cấp API nội bộ: `searchSkills(query, context)`, `getSkillDetail(alias)`.
+- **IDE Adapters**:
+    - VS Code: `extension.ts` sử dụng `vscode.ExtensionContext`.
+    - JetBrains: plugin Java/Kotlin wrap lại Core Engine (hoặc tái hiện logic).
+- **Data Source**:
+    - Local copy của repo (đường dẫn cấu hình được trong settings).
+    - Tuỳ chọn: remote API (nếu sau này tách thành service).
+
+### 4.5. Tính năng chi tiết cho VS Code (MVP)
+
+1. **Skill Palette (Command: `Open Skills Palette`)**
+    - Mở Quick Pick để:
+        - Tìm kiếm skill theo tên/alias/mô tả.
+        - Filter theo nhóm (từ `skills_guide.md`).
+2. **Contextual Suggestions**
+    - Command: `Suggest Skills for Current File`.
+    - Dựa vào:
+        - Loại file (extension).
+        - Nội dung đơn giản (regex: `next.config`, `react`, `docker`, `aws`, ...).
+3. **Hover Docs cho Alias**
+    - Khi người dùng gõ trong comment/code: `@clean-code`, `@architecture`, ...:
+        - Hover sẽ hiển thị mô tả ngắn + link mở `SKILL.md`.
+4. **Snippet/Template Integration**
+    - Một số skills có thể kèm snippet (ví dụ: template ADR, README, test).
+
+### 4.6. Lộ trình triển khai
+
+- **Sprint 1 (1–2 tuần)**:
+    - Thiết kế JSON schema cho metadata skill (nếu cần tách riêng).
+    - Implement Core Engine (search, filter, load skills).
+    - Prototype VS Code Command: `Open Skills Palette`.
+- **Sprint 2 (1–2 tuần)**:
+    - Thêm Contextual Suggestions theo loại file.
+    - Thêm Hover Docs cho alias trong code.
+    - Viết README + hướng dẫn cài đặt extension.
+- **Sprint 3+**:
+    - Tách core thành package riêng (vd: `@antigravity/skills-core`).
+    - JetBrains / Neovim adapter.
+    - Tích hợp sâu hơn với Agent (gọi skill trực tiếp từ IDE).
+
+### 4.7. Đo lường hiệu quả
+
+- Số lần gọi Skill Palette mỗi ngày.
+- Thời gian trung bình từ việc mở file -> chọn đúng skill hỗ trợ.
+- Feedback trực tiếp từ developer: survey ngắn tích hợp trong extension.

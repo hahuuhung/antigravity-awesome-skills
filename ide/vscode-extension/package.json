@@ -1,0 +1,46 @@
+{
+  "name": "antigravity-skills-vscode",
+  "displayName": "Antigravity Awesome Skills",
+  "description": "Browse and use Antigravity Awesome Skills directly inside VS Code.",
+  "version": "0.0.1",
+  "publisher": "local-dev",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:antigravitySkills.openPalette",
+    "onCommand:antigravitySkills.suggestForFile",
+    "onCommand:antigravitySkills.insertAliasAtCursor",
+    "onView:antigravitySkills.treeView"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "antigravitySkills.openPalette",
+        "title": "Antigravity Skills: Open Skills Palette"
+      },
+      {
+        "command": "antigravitySkills.suggestForFile",
+        "title": "Antigravity Skills: Suggest Skills for Current File"
+      },
+      {
+        "command": "antigravitySkills.insertAliasAtCursor",
+        "title": "Antigravity Skills: Insert Selected Skill Alias at Cursor"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "antigravitySkills.treeView",
+          "name": "Antigravity Skills"
+        }
+      ]
+    }
+  },
+  "dependencies": {}
+}
+

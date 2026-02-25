@@ -1,0 +1,7 @@
+[
+    {
+        "key": "ctrl+alt+;",
+        "command": "antigravitySkills.insertAliasAtCursor",
+        "when": "editorTextFocus"
+      }
+  ]
